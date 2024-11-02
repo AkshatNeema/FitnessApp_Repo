@@ -1,0 +1,85 @@
+<div class="container">
+    <title>SIGN UP HERE</title>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container">
+                <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" formControlName="userName">
+                        <span *ngIf="signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched" class="text-danger">
+                            Name is required.
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" formControlName="email">
+                        <span *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-danger">
+                            Enter a valid email.
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact *</label>
+                        <input type="text" class="form-control" id="contact" placeholder="Enter your contact number" formControlName="userContact">
+                        <span *ngIf="signupForm.get('userContact')?.invalid && signupForm.get('userContact')?.touched" class="text-danger">
+                            Enter a valid 10-digit contact number.
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" formControlName="password">
+                        <span *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger">
+                            Password must be at least 6 characters long.
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" formControlName="confirmPassword">
+                        <span *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched" class="text-danger">
+                            Passwords do not match.
+                        </span>
+                    </div>
+                    <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <p>signup works!</p>
+<div class="login-form">
+    <div class="form-group">
+        <div class="signup" style="width:50%;height:100%">
+            <h6 class="title">Sign UP</h6>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()" class="sign-in-form" autocomplete="off">
+                <div class="input-field">
+                    <i class="fa fa-user"></i>
+                    <input id="userName" type="text" placeholder="Username" formControlName="userName" />
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-user"></i>
+                    <input id="email" type="email" placeholder="Email" formControlName="email" />
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-user"></i>
+                    <input id="userContact" type="number" placeholder="PhoneNo" formControlName="userContact" />
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-lock"></i>
+                    <input id="password" type="password" placeholder="Password" formControlName="password" />
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-lock"></i>
+                    <input id="confirmPassword" type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+                </div>
+                <input  type="submit" class="btn btn-success" value="Submit" />
+            </form>
+
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,42 @@
+<div class="main-container">
+    <div class="login-nav">
+        <div class="left" style="display:flex">
+            <!-- <lucide-icon [size]="45" style="color:#8626C3;margin-right:10px" name="cloud-cog"></lucide-icon> -->
+            <h2 style="color: #ffffff;margin-top: 5px;">Fitness HUB !!</h2>
+        </div>
+        <div class="right"></div>
+    </div>
+    <div class="login-form">
+        <div class="form-container">
+            <div class="login" style="width:50%;height:100%">
+                <h6 class="title">Log in</h6>
+                
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()" class="sign-in-form" autocomplete="off">
+                    <div class="input-field">
+                        <i class="fa fa-user"></i>
+                        <input id="userName" type="text" placeholder="Username" formControlName="userName" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fa fa-lock"></i>
+                        <input id="password" type="password" placeholder="Password" formControlName="password" />
+                    </div>
+                    <div class="msgs">
+                        <p *ngIf="pmsg" class="text-primary pmsg">{{pmsg}}</p>
+                        <p *ngIf="smsg" class="text-success smsg">{{smsg}}</p>
+                        <p *ngIf="emsg" class="text-danger emsg">{{emsg}}</p>
+                    </div>
+                    <input [disabled]="loginForm.invalid" type="submit" class="btn solid" value="Login" />
+                </form>
+                <div><button class="btn solid" (click)="gotosignup()">Sign Up</button></div>
+
+            </div>
+            <div class="info" style="width: 50%;height: 100%;">
+                <div class="right-banner">
+                    <h3>Hello, Everyone!</h3>
+                    <p style="text-align: center; font-size:small">Login with your personal details and get ready to tranform your life </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panels-container"></div>
+</div>

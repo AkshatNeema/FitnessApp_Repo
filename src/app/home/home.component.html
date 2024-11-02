@@ -1,0 +1,40 @@
+<h2>{{title}} Welcome to Fitness Hub !!</h2>
+<div class="bmiBox">
+    <div class="col-6 BmiBoxContainer ">
+        <div class="bmiForms">
+        <h6 class="title">Calculate BMI</h6>
+        <form [formGroup]="bmiForm" (ngSubmit)="CalculateBMI()"  autocomplete="off" >
+                <div class="input-field">
+                    <label for="height" >Height :</label>
+                    <input type="number" placeholder="Enter height in cm" formControlName="height_input">
+                </div>
+                    <span *ngIf=" bmiForm.get('height_input')?.touched && bmiForm.get('height_input')?.invalid">Please enter a valid Height</span>
+                <div class="input-field">
+                    <label for="weight">Weight :</label>
+                    <input type="number"  placeholder="Enter weight in kg" formControlName="weight_input">
+                </div>
+                <span *ngIf=" bmiForm.get('weight_input')?.touched && bmiForm.get('weight_input')?.invalid">Please enter a valid Weight</span>
+                <input [disabled]="bmiForm.invalid" type="submit" class="btn solid" value="Calculate" />
+        </form>
+        <div class="slidecontainer" *ngIf="bmiCalculated">
+            <label for="bmi">Your BMI:</label>
+            <input *ngIf="bmiForm.valid" type="range" min="18.5" max="35" [value]="calculated_BMI" disabled>
+            <span>{{calculated_BMI}}</span>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<h3>Select your prefered option👇</h3>
+<div class="boxes">
+    <div class="box">
+        <div class="col-6 imgbox" id="box1"><img src="fat2.png" alt="Fat Man"></div>
+        <div class="textbox"><button style="font-weight: bolder;" (click)="Loose()">Fat to Fit</button></div>
+    </div>
+    <div class="box">
+        <div class=" col-6 imgbox" id="box2"><img src="mr-bean.png" alt="Thin Man"></div>
+        <div class="textbox"><button style="font-weight: bolder;" (click)="Gain()">Skinny To Muscular</button></div>
+    </div>
+</div>
+<script src="indexs.js"></script>
