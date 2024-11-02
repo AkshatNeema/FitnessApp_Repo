@@ -1,0 +1,77 @@
+<!-- <p>reactive-form works!</p>
+<h1>{{title}}</h1><br>
+<div style="text-align: center;">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="text" name="name" placeholder="Enter Name" formControlName="user">
+    <br><br>
+    <input type="password" name="password" placeholder="Enter password" formControlName="password">
+    <br><br>
+    <button>Login</button>
+</form></div> -->
+
+<div class="mt-2 p-4 bg-secondary text-white rounded">
+    <h2>Reactive Form Using Form Group</h2>
+</div> 
+<div>
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userArray">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td><button class="btn btn-sm btn-success" (click)="onEdit(user.id)">Edit<i class="bi bi-pen"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <form [formGroup]="userForm" (submit)="onSave()">
+        <div class="row">
+            <div class="col col-4 ">
+                <label for="">Name </label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                <label for="">UserName </label>
+                <input type="text" class="form-control" formControlName="username">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                <label for="">Email </label>
+                <input type="email" class="form-control" formControlName="email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-6">
+                <button class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <form [formGroup]="empForm" (submit)="onSubmitEmp()">
+        <label for="Name">Emp Name</label>
+        <input type="text" name="Name" formControlName="empName"><br>
+        <span *ngIf="empForm.controls?.['empName']?.errors && empForm.controls?.['empName']?.touched">Invalid Name</span><br><br>
+        <label for="UserName">Emp User Name</label>
+        <input type="text" name="UserName" formControlName="empUsername"><br><br>
+        <label for="Email">Email</label>
+        <input type="text" name="Email" formControlName="empEmail"><br><br>
+        <button class="btn btn-success" name="submit">Submit</button>
+    </form>
+</div>
+
