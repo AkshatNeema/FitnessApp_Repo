@@ -9,9 +9,19 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/FitnessApp', {})
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.error("MongoDB connection error:", err));
+// mongoose.connect('mongodb://localhost:27017/FitnessApp', {})
+//     .then(() => console.log("MongoDB connected"))
+//     .catch(err => console.error("MongoDB connection error:", err));
+
+mongoose.connect(process.env.MONGO_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+  tls: true, // Enable TLS for secure connection
+  tlsCAFile: "/path/to/rds-combined-ca-bundle.pem", // Required for SSL connection
+})
+.then(() => console.log("Connected to DocumentDB"))
+.catch(err => console.error("Connection Error: ", err));
+
 
 const userSchema = new mongoose.Schema({
     userName: String,
