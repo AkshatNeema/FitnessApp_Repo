@@ -9,19 +9,26 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// mongoose.connect('mongodb://localhost:27017/FitnessApp', {})
-//     .then(() => console.log("MongoDB connected"))
-//     .catch(err => console.error("MongoDB connection error:", err));
+MONGO_URI = "mongodb+srv://AkshatNeema:AkshatNeema@akshat.1zdop.mongodb.net/?retryWrites=true&w=majority&appName=Akshat";
 
-mongoose.connect(process.env.MONGO_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-  tls: true, // Enable TLS for secure connection
-  tlsCAFile: "/path/to/rds-combined-ca-bundle.pem", // Required for SSL connection
-})
-.then(() => console.log("Connected to DocumentDB"))
-.catch(err => console.error("Connection Error: ", err));
-
+mongoose.connect(MONGO_URI, {
+    serverSelectionTimeoutMS: 20000, // Increase timeout
+  })
+  .then(() => console.log("✅ Connected to MongoDB successfully"))
+  .catch(err => console.error("❌ MongoDB Connection Error:", err));
+  
+  // ✅ Handle Mongoose connection events
+  mongoose.connection.on("connected", () => {
+    console.log("✅ Mongoose connected to DB");
+  });
+  
+  mongoose.connection.on("error", (err) => {
+    console.error("❌ Mongoose connection error:", err);
+  });
+  
+  mongoose.connection.on("disconnected", () => {
+    console.log("⚠️ Mongoose disconnected");
+  });
 
 const userSchema = new mongoose.Schema({
     userName: String,
@@ -106,9 +113,6 @@ app.get('/all-users', async (req, res) => {
     }
 });
 
-
-
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
-//files updated 
